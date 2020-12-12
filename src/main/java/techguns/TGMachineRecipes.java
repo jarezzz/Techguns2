@@ -35,6 +35,7 @@ import techguns.tileentities.operation.ReactionChamberRecipe;
 import techguns.tileentities.operation.ReactionChamberRecipe.RiskType;
 import techguns.util.ItemStackOreDict;
 import techguns.util.ItemUtil;
+import techguns.TGConfig;
 
 /**
 * Class that contains recipes for machines
@@ -211,8 +212,10 @@ public class TGMachineRecipes {
 		/**
 		 * Blast Furnace
 		 */
-		BlastFurnaceRecipes.addRecipe(new ItemStack(Items.IRON_INGOT,4), new ItemStack(Items.COAL,1), TGItems.newStack(TGItems.INGOT_STEEL, 4), 10, 800);
-		BlastFurnaceRecipes.addRecipe(new ItemStack(Items.IRON_INGOT,4), new ItemStack(Items.COAL,1,1), TGItems.newStack(TGItems.INGOT_STEEL, 4), 10, 800);
+		if (TGConfig.addSteelRecipe){
+		   BlastFurnaceRecipes.addRecipe(new ItemStack(Items.IRON_INGOT,4), new ItemStack(Items.COAL,1), TGItems.newStack(TGItems.INGOT_STEEL, 4), 10, 800);
+		   BlastFurnaceRecipes.addRecipe(new ItemStack(Items.IRON_INGOT,4), new ItemStack(Items.COAL,1,1), TGItems.newStack(TGItems.INGOT_STEEL, 4), 10, 800);
+		}
 		BlastFurnaceRecipes.addRecipe("ingotSteel",1, new ItemStack(Blocks.OBSIDIAN,1), TGItems.newStack(TGItems.INGOT_OBSIDIAN_STEEL, 1), 10, 200);
 		BlastFurnaceRecipes.addRecipe("ingotCopper", 3,"ingotTin",1,TGItems.newStack(TGItems.INGOT_BRONZE, 4), 10, 100);
 		

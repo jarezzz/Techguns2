@@ -39,6 +39,12 @@ public class TGConfig {
 	public static boolean doOreGenTitanium;
 	
 	/**
+	 * RECIPES
+	 */
+	 
+	public static boolean addSteelRecipe;
+	
+	/**
 	 * IDS
 	 */
 	public static int dataWatcherID_FaceSlot;
@@ -180,6 +186,7 @@ public class TGConfig {
 		addSteelIngots = config.getBoolean("addSteelIngot", CATEGORY_ENABLING_ITEMS, true, "Adds Steel ingots.");
 		addSteelNuggets = config.getBoolean("addSteelNugget", CATEGORY_ENABLING_ITEMS, true, "Adds Steel nuggets.");
 	
+		addSteelRecipe = config.getBoolean("addSteelRecipe", CATEGORY_ENABLING_ITEMS, true, "Enables steel recipe in a TG blast furance.");
 		
 		distanceSpawnLevel0 = config.getInt("DistanceSpawnLevel0", "NPC Spawn", 500, 0, Integer.MAX_VALUE, "Up to which distance to worldspawn only mobs with danger level up to 0 will spawn");
 		distanceSpawnLevel1 = config.getInt("DistanceSpawnLevel1", "NPC Spawn", 1000, 0, Integer.MAX_VALUE, "Up to which distance to worldspawn only mobs with danger level up to 1 will spawn");

@@ -43,6 +43,7 @@ public class TGConfig {
 	 */
 	 
 	public static boolean addSteelRecipe;
+	public static boolean addOreDicts;
 	
 	/**
 	 * IDS
@@ -187,6 +188,8 @@ public class TGConfig {
 		addSteelNuggets = config.getBoolean("addSteelNugget", CATEGORY_ENABLING_ITEMS, true, "Adds Steel nuggets.");
 	
 		addSteelRecipe = config.getBoolean("addSteelRecipe", CATEGORY_ENABLING_ITEMS, true, "Enables steel recipe in a TG blast furance.");
+		
+		addOreDicts = config.getBoolean("addOreDicts", CATEGORY_ENABLING_ITEMS, true, "Registers oreDicts for carbon, titanium, circuits and other items that might be used from other mods with a cheaper recipes.");
 		
 		distanceSpawnLevel0 = config.getInt("DistanceSpawnLevel0", "NPC Spawn", 500, 0, Integer.MAX_VALUE, "Up to which distance to worldspawn only mobs with danger level up to 0 will spawn");
 		distanceSpawnLevel1 = config.getInt("DistanceSpawnLevel1", "NPC Spawn", 1000, 0, Integer.MAX_VALUE, "Up to which distance to worldspawn only mobs with danger level up to 1 will spawn");

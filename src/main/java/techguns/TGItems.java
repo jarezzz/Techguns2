@@ -43,6 +43,8 @@ import techguns.items.tools.TGCrowbar;
 import techguns.items.tools.TGSword;
 import techguns.recipes.Recipewriter;
 import techguns.tools.ItemJsonCreator;
+import techguns.TGConfig;
+
 
 public class TGItems implements ITGInitializer{
 
@@ -643,6 +645,35 @@ public class TGItems implements ITGInitializer{
 	}
 
 	public static void registerItemsToOreDict() {
+		
+		if(TGConfig.addOreDicts) {
+			registerIfEnabled("plateCarbon", PLATE_CARBON);
+		    registerIfEnabled("fiberCarbon", CARBON_FIBERS);
+			registerIfEnabled("circuitBasic", CIRCUIT_BOARD_BASIC);
+		    registerIfEnabled("wireCopper", WIRE_COPPER);
+		    registerIfEnabled("wireGold", WIRE_GOLD);
+		    registerIfEnabled("circuitElite", CIRCUIT_BOARD_ELITE);
+			registerIfEnabled("ingotTitanium", INGOT_TITANIUM);		
+			registerIfEnabled("sheetPlastic", PLASTIC_SHEET);			
+		    registerIfEnabled("rawPlastic", RAW_PLASTIC);
+			registerIfEnabled("plateTitanium", PLATE_TITANIUM);
+		}
+		else {
+			registerIfEnabled("plateCarbonTG", PLATE_CARBON);
+		    registerIfEnabled("fiberCarbonTG", CARBON_FIBERS);
+			registerIfEnabled("circuitBasicTG", CIRCUIT_BOARD_BASIC);
+		    registerIfEnabled("wireCopperTG", WIRE_COPPER);
+		    registerIfEnabled("wireGoldTG", WIRE_GOLD);
+		    registerIfEnabled("circuitEliteTG", CIRCUIT_BOARD_ELITE);
+			registerIfEnabled("ingotTitaniumTG", INGOT_TITANIUM);
+			registerIfEnabled("sheetPlasticTG", PLASTIC_SHEET);
+		    registerIfEnabled("rawPlasticTG", RAW_PLASTIC);
+			registerIfEnabled("plateTitaniumTG", PLATE_TITANIUM);
+		}
+		 registerIfEnabled("itemRubber", RUBBER_BAR);
+		 registerIfEnabled("itemRawRubber", RAW_RUBBER);
+		 registerIfEnabled("oreTitanium", ORE_TITANIUM);
+		
 		 registerIfEnabled("ingotObsidianSteel", INGOT_OBSIDIAN_STEEL); 
 		 
 		 registerIfEnabled("plateIron", PLATE_IRON);
@@ -651,18 +682,8 @@ public class TGItems implements ITGInitializer{
 		 registerIfEnabled("plateBronze", PLATE_BRONZE);
 		 registerIfEnabled("plateSteel", PLATE_STEEL);
 		 registerIfEnabled("plateLead", PLATE_LEAD);
-		 registerIfEnabled("plateCarbon", PLATE_CARBON);
-		 registerIfEnabled("fiberCarbon", CARBON_FIBERS);
+		 
 		 registerIfEnabled("plateObsidianSteel", PLATE_OBSIDIAN_STEEL);
-		 registerIfEnabled("circuitBasic", CIRCUIT_BOARD_BASIC);
-		 registerIfEnabled("wireCopper", WIRE_COPPER);
-		 registerIfEnabled("itemRubber", RUBBER_BAR);
-		 registerIfEnabled("wireGold", WIRE_GOLD);
-		 registerIfEnabled("circuitElite", CIRCUIT_BOARD_ELITE);
-		 registerIfEnabled("ingotTitanium", INGOT_TITANIUM);
-		 registerIfEnabled("oreTitanium", ORE_TITANIUM);
-		 registerIfEnabled("plateTitanium", PLATE_TITANIUM);
-		 registerIfEnabled("sheetPlastic", PLASTIC_SHEET);
 		 registerIfEnabled("dustUranium", TGItems.YELLOWCAKE);
 		 registerIfEnabled("ingotUraniumEnriched", TGItems.ENRICHED_URANIUM);
 		 
@@ -676,8 +697,7 @@ public class TGItems implements ITGInitializer{
 		 OreDictionary.registerOre("nuggetLead", NUGGET_LEAD);
 		 OreDictionary.registerOre("nuggetSteel", NUGGET_STEEL);
 		 
-		 registerIfEnabled("itemRawRubber", RAW_RUBBER);
-		 registerIfEnabled("rawPlastic", RAW_PLASTIC);
+		 
 	}
 	public static void registerIfEnabled(String oreName, ItemStack item) {
 		if (SHARED_ITEM.get(item.getItemDamage()).isEnabled()) {

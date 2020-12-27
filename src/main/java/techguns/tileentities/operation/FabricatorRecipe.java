@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import techguns.TGItems;
 import techguns.tileentities.FabricatorTileEntMaster;
 import techguns.util.ItemStackOreDict;
+import techguns.TGConfig;
 
 public class FabricatorRecipe implements IMachineRecipe{
 
@@ -17,23 +18,44 @@ public class FabricatorRecipe implements IMachineRecipe{
 	public static ArrayList<ItemStackOreDict> items_plateslot = new ArrayList<>();
 	
 	
-	public static ItemStackOreDict copperWires = new ItemStackOreDict("wireCopper",1);
-	public static ItemStackOreDict goldWires = new ItemStackOreDict("wireGold",1);
+	public static ItemStackOreDict copperWires;  
+	public static ItemStackOreDict goldWires;  
 	
 	public static ItemStackOreDict redstone = new ItemStackOreDict("dustRedstone",1);
 	
-	public static ItemStackOreDict plastic = new ItemStackOreDict("sheetPlastic",1);
+	public static ItemStackOreDict plastic; 
 	
-	public static ItemStackOreDict circuit_basic = new ItemStackOreDict("circuitBasic",1);
-	public static ItemStackOreDict circuit_elite = new ItemStackOreDict("circuitElite",1);
+	public static ItemStackOreDict circuit_basic; 
+	public static ItemStackOreDict circuit_elite;  
 	
 	public static ItemStackOreDict mechanicalPartsT3 = new ItemStackOreDict(TGItems.MECHANICAL_PARTS_CARBON,1);
 	
-	public static ItemStackOreDict carbonPlate = new ItemStackOreDict("plateCarbon",1);
-	public static ItemStackOreDict titaniumPlate = new ItemStackOreDict("plateTitanium",1);
+	public static ItemStackOreDict carbonPlate;  
+	public static ItemStackOreDict titaniumPlate;
 	public static ItemStackOreDict leadPlate = new ItemStackOreDict("plateLead",1);
 	
+	
+	
 	static{
+		if(TGConfig.addOreDicts) {
+			copperWires = new ItemStackOreDict("wireCopper",1);
+			goldWires = new ItemStackOreDict("wireGold",1);
+			plastic = new ItemStackOreDict("sheetPlastic",1);
+			circuit_basic = new ItemStackOreDict("circuitBasic",1);
+			circuit_elite = new ItemStackOreDict("circuitElite",1);
+			carbonPlate = new ItemStackOreDict("plateCarbon",1);
+			titaniumPlate = new ItemStackOreDict("plateTitanium",1);
+		}
+		else {
+			copperWires = new ItemStackOreDict("wireCopperTG",1);
+			goldWires = new ItemStackOreDict("wireGoldTG",1);
+			plastic = new ItemStackOreDict("sheetPlasticTG",1);
+			circuit_basic = new ItemStackOreDict("circuitBasicTG",1);
+			circuit_elite = new ItemStackOreDict("circuitEliteTG",1);
+			carbonPlate = new ItemStackOreDict("plateCarbonTG",1);
+			titaniumPlate = new ItemStackOreDict("plateTitaniumTG",1);;
+		}
+	
 		items_wireslot.add(copperWires);
 		items_wireslot.add(goldWires);
 		items_wireslot.add(circuit_basic);

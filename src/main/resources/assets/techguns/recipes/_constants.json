@@ -22,15 +22,13 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "circuitBasic"
+      "type": "techguns:circuitBoard"
     },
     "name": "CIRCUITBASIC"
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "circuitElite"
+      "type": "techguns:circuitElite"
     },
     "name": "CIRCUITELITE"
   },
@@ -91,8 +89,7 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "fiberCarbon"
+      "type": "techguns:fiberCarbon"
     },
     "name": "FIBERCARBON"
   },
@@ -174,8 +171,7 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "ingotTitanium"
+      "type": "techguns:ingotTitanium"
     },
     "name": "INGOTTITANIUM"
   },
@@ -258,8 +254,7 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "plateCarbon"
+      "type": "techguns:plateCarbon"
     },
     "name": "PLATECARBON"
   },
@@ -300,8 +295,7 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "plateTitanium"
+      "type": "techguns:plateTitanium"
     },
     "name": "PLATETITANIUM"
   },
@@ -314,8 +308,7 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "sheetPlastic"
+      "type": "techguns:sheetPlastic"
     },
     "name": "SHEETPLASTIC"
   },
@@ -349,15 +342,13 @@
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "wireCopper"
+      "type": "techguns:wireCopper"
     },
     "name": "WIRECOPPER"
   },
   {
     "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "wireGold"
+      "type": "techguns:wireGold"
     },
     "name": "WIREGOLD"
   },

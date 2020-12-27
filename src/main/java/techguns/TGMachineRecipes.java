@@ -80,16 +80,27 @@ public class TGMachineRecipes {
 		MetalPressRecipes.addRecipe("ingotLead","ingotLead",TGItems.newStack(TGItems.PLATE_LEAD,2), true);
 		MetalPressRecipes.addRecipe("plateIron", new ItemStack(Items.FLINT,1), TGItems.newStack(TGItems.MECHANICAL_PARTS_IRON, 1), true);
 		MetalPressRecipes.addRecipe("plateObsidianSteel", "gemQuartz", TGItems.newStack(TGItems.MECHANICAL_PARTS_OBSIDIAN_STEEL, 1), true);
-		MetalPressRecipes.addRecipe("plateCarbon", new ItemStack(Items.BLAZE_ROD), TGItems.newStack(TGItems.MECHANICAL_PARTS_CARBON, 2), true);
+		if(TGConfig.addOreDicts) {
+			MetalPressRecipes.addRecipe("plateCarbon", new ItemStack(Items.BLAZE_ROD), TGItems.newStack(TGItems.MECHANICAL_PARTS_CARBON, 2), true);
+			MetalPressRecipes.addRecipe("fiberCarbon", "fiberCarbon", TGItems.newStack(TGItems.PLATE_CARBON, 2), true);
+			MetalPressRecipes.addRecipe("ingotTitanium","ingotTitanium",TGItems.newStack(TGItems.PLATE_TITANIUM,2), true);
+			MetalPressRecipes.addRecipe("plateObsidianSteel","plateTitanium",TGItems.newStack(TGItems.GAUSSRIFLE_SLUGS,4), true);
+		}
+		else {
+			MetalPressRecipes.addRecipe("plateCarbonTG", new ItemStack(Items.BLAZE_ROD), TGItems.newStack(TGItems.MECHANICAL_PARTS_CARBON, 2), true);
+			MetalPressRecipes.addRecipe("fiberCarbonTG", "fiberCarbonTG", TGItems.newStack(TGItems.PLATE_CARBON, 2), true);
+			MetalPressRecipes.addRecipe("ingotTitaniumTG","ingotTitaniumTG",TGItems.newStack(TGItems.PLATE_TITANIUM,2), true);
+			MetalPressRecipes.addRecipe("plateObsidianSteel","plateTitaniumTG",TGItems.newStack(TGItems.GAUSSRIFLE_SLUGS,4), true);
+		}
 		MetalPressRecipes.addRecipe("plateCopper", "plateCopper", TGItems.newStack(TGItems.WIRE_COPPER, 8), true);
-		MetalPressRecipes.addRecipe("fiberCarbon", "fiberCarbon", TGItems.newStack(TGItems.PLATE_CARBON, 2), true);
+		
 		MetalPressRecipes.addRecipe("plateObsidianSteel", TGItems.newStack(TGItems.TGX, 1), TGItems.newStack(TGItems.ADVANCED_ROUNDS, 16), true);
 		MetalPressRecipes.addRecipe("ingotObsidianSteel", "ingotObsidianSteel", TGItems.newStack(TGItems.PLATE_OBSIDIAN_STEEL, 2), true);
 		MetalPressRecipes.addRecipe("plateSteel", "plateBronze", TGItems.newStack(TGItems.STEAMARMOR_PLATE, 1), true);
 		MetalPressRecipes.addRecipe("ingotGold", "ingotGold", TGItems.newStack(TGItems.WIRE_GOLD, 2), true);
 		MetalPressRecipes.addRecipe("plateIron", new ItemStack(Blocks.TNT,1), TGItems.newStack(TGItems.GRENADE_40MM, 16), true);
-		MetalPressRecipes.addRecipe("ingotTitanium","ingotTitanium",TGItems.newStack(TGItems.PLATE_TITANIUM,2), true);
-		MetalPressRecipes.addRecipe("plateObsidianSteel","plateTitanium",TGItems.newStack(TGItems.GAUSSRIFLE_SLUGS,4), true);
+		
+		
 		MetalPressRecipes.addRecipe(TGItems.newStack(TGItems.SNIPER_ROUNDS_INCENDIARY, 1), TGItems.newStack(TGItems.TGX, 1), TGItems.newStack(TGItems.SNIPER_ROUNDS_EXPLOSIVE, 1), true);
 		
 		//CHEM LAB
@@ -102,12 +113,12 @@ public class TGMachineRecipes {
 		
 		if(!TGFluids.oils.isEmpty()){
 			//ChemLabRecipes.addRecipe("slimeball", 1, new ItemStack(Items.COAL), 1, null, 0, new FluidStack(FluidRegistry.WATER,1000), new FluidStack(TGFluids.OIL,250), null, true, 20);
-			
+		
 			TGFluids.oils.forEach(f -> {
-				ChemLabRecipes.addRecipe("itemRawRubber", 1, (ItemStack)null, 0, null, 0, new FluidStack(f,500), null, TGItems.newStack(TGItems.RAW_PLASTIC, 1), false, 25);
+					ChemLabRecipes.addRecipe("itemRawRubber", 1, (ItemStack)null, 0, null, 0, new FluidStack(f,500), null, TGItems.newStack(TGItems.RAW_PLASTIC, 1), false, 25);
 			});
 		} else {
-			ChemLabRecipes.addRecipe("itemRawRubber", 1, new ItemStack(Items.COAL,1), 1, null, 0, new FluidStack(TGFluids.WATER,1000), null, TGItems.newStack(TGItems.RAW_PLASTIC, 1), true, 25);
+				ChemLabRecipes.addRecipe("itemRawRubber", 1, new ItemStack(Items.COAL,1), 1, null, 0, new FluidStack(TGFluids.WATER,1000), null, TGItems.newStack(TGItems.RAW_PLASTIC, 1), true, 25);
 		}
 		
 		ChemLabRecipes.addRecipe(TGItems.BIOMASS, 1, new ItemStack(Items.GUNPOWDER), 1, null, 0, new FluidStack(TGFluids.WATER,1000), new FluidStack(TGFluids.ACID,1000), null, true, 20);
@@ -179,9 +190,14 @@ public class TGMachineRecipes {
 		/**
 		 * FABRICATOR
 		 */
+		if(TGConfig.addOreDicts) {
+			FabricatorRecipe.addRecipe(new ItemStackOreDict("ingotTitanium"), 2, FabricatorRecipe.circuit_basic, 4, FabricatorRecipe.mechanicalPartsT3, 1, FabricatorRecipe.carbonPlate, 4, TGItems.POWER_ARMOR_PLATING, 2);
+		}
+		else {
+			FabricatorRecipe.addRecipe(new ItemStackOreDict("ingotTitaniumTG"), 2, FabricatorRecipe.circuit_basic, 4, FabricatorRecipe.mechanicalPartsT3, 1, FabricatorRecipe.carbonPlate, 4, TGItems.POWER_ARMOR_PLATING, 2);
+		}
 		FabricatorRecipe.addRecipe(new ItemStackOreDict("ingotGold"), 1, FabricatorRecipe.copperWires, 1, FabricatorRecipe.redstone, 3, FabricatorRecipe.plastic, 1, TGItems.ENERGY_CELL_EMPTY, 1);
 		FabricatorRecipe.addRecipe(new ItemStackOreDict(new ItemStack(Blocks.SOUL_SAND,1)), 1, FabricatorRecipe.goldWires, 1, FabricatorRecipe.redstone, 1, FabricatorRecipe.plastic, 1, TGItems.CYBERNETIC_PARTS, 1);
-		FabricatorRecipe.addRecipe(new ItemStackOreDict("ingotTitanium"), 2, FabricatorRecipe.circuit_basic, 4, FabricatorRecipe.mechanicalPartsT3, 1, FabricatorRecipe.carbonPlate, 4, TGItems.POWER_ARMOR_PLATING, 2);
 		FabricatorRecipe.addRecipe(new ItemStackOreDict(TGItems.newStack(TGItems.COIL, 1)), 1, FabricatorRecipe.circuit_elite, 2, FabricatorRecipe.mechanicalPartsT3, 1, FabricatorRecipe.titaniumPlate, 1, TGItems.SONIC_EMITTER, 1);		
 		FabricatorRecipe.addRecipe(new ItemStackOreDict(TGItems.newStack(TGItems.ENRICHED_URANIUM, 1)), 1, FabricatorRecipe.circuit_elite, 2, FabricatorRecipe.mechanicalPartsT3, 2, FabricatorRecipe.leadPlate, 2, TGItems.RAD_EMITTER, 1);		
 		

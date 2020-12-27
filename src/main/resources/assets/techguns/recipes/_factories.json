@@ -8,6 +8,16 @@
   "ingredients": {
     "electrumOrGold": "techguns.recipes.OreDictIngredientElectrumOrGold",
     "hardenedGlassOrGlass": "techguns.recipes.OreDictIngredientHardenedGlass",
-    "itemstackHasNBTInt": "techguns.recipes.IngredientFactoryMatchNBTInt"
+    "itemstackHasNBTInt": "techguns.recipes.IngredientFactoryMatchNBTInt",
+	"circuitBoard": "techguns.recipes.OreDictIngredientCircuitBoard",
+	"fiberCarbon": "techguns.recipes.OreDictIngredientCarbonFibers",
+	"circuitElite": "techguns.recipes.OreDictIngredientCircuitElite",
+    "ingotTitanium": "techguns.recipes.OreDictIngredientIngotTitanium",
+	"sheetPlastic": "techguns.recipes.OreDictIngredientSheetPlastic",
+	"plateCarbon": "techguns.recipes.OreDictIngredientPlateCarbon",
+	"plateTitanium": "techguns.recipes.OreDictIngredientPlateTitanium",
+	"rawPlastic": "techguns.recipes.OreDictIngredientRawPlastic",
+	"wireCopper": "techguns.recipes.OreDictIngredientWireCopper",
+	"wireGold": "techguns.recipes.OreDictIngredientWireGold"
   }
 }

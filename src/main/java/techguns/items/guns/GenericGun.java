@@ -396,6 +396,7 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 				cp.player_zoom= 1.0f;
 			} else {
 				cp.player_zoom = this.zoomMult;
+				
 			}
 			return true;
     	}

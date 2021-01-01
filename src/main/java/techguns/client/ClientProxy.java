@@ -824,7 +824,7 @@ public class ClientProxy extends CommonProxy {
 		
 		ItemRenderHack.registerItemRenderer(TGuns.teslagun,new RenderGunBase90(new ModelTeslaGun(),1).setBaseTranslation(0.25f, -0.2f, RenderItemBase.SCALE-0.09f)
 				.setGUIScale(0.45f).setMuzzleFx(ScreenEffect.muzzleFlashLightning, 0, 0.26f, -0.67f, 0.5f,0).setTransformTranslations(new float[][]{
-					{0f,0.15f,0.04f}, //First Person
+					{0f,0.08f,0.04f}, //First Person
 					{0f,0.05f,-0.08f}, //Third Person
 					{0.03f,0.01f,0f}, //GUI
 					{0f,0f,0f}, //Ground
@@ -842,7 +842,7 @@ public class ClientProxy extends CommonProxy {
 		
 		ItemRenderHack.registerItemRenderer(TGuns.lasergun,new RenderGunBase90(new ModelLasergun(),1).setBaseTranslation(0.25f, -0.2f, RenderItemBase.SCALE*0.5f-0.10f)
 				.setBaseScale(1.1f).setGUIScale(0.40f).setMuzzleFx(ScreenEffect.muzzleFlashLaser, 0, 0.30f, -1.06f, 0.5f,0).setTransformTranslations(new float[][]{
-					{0f,0.15f,0.04f}, //First Person
+					{0f,0.07f,0.04f}, //First Person
 					{0f,0.02f,0.01f}, //Third Person
 					{0.13f,0.01f,0f}, //GUI
 					{0f,0f,0.15f}, //Ground

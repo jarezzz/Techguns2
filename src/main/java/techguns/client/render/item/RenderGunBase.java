@@ -30,6 +30,10 @@ public class RenderGunBase extends RenderItemBase {
 	protected float muzzleFX_y=0f;
 	protected float muzzleFX_z=0f;
 	protected float muzzleFX_scale=1.0f;
+	
+	protected float Xzoom = -0.4f;//-0.35f, 0.1f, 0.05f); //xyz
+	protected float Yzoom = 0.08f;
+	protected float Zzoom = 0.02f;
 
 	protected float muzzleFX_3p_y=0f;
 	protected float muzzleFX_3p_z=0f;
@@ -141,6 +145,7 @@ public class RenderGunBase extends RenderItemBase {
 		this.muzzleFX_scale=scale;
 		return this;
 	}
+	
 	public RenderGunBase setMuzzleFXPos3P(float y, float z) {
 		this.muzzleFX_3p_y=y;
 		this.muzzleFX_3p_z=z;
@@ -281,9 +286,10 @@ public class RenderGunBase extends RenderItemBase {
 				renderScope = true;
 			} else {
 			
-				/*if (!isOffhand && gun.getZoomMult()>0f && gun.isZooming()) {
-					this.transformADS();
-				}*/
+				if (!isOffhand && gun.getZoomMult()<1.0f && gun.isZooming()) {
+					this.transformADS(); //-0.35f, 0.1f, 0.05f)
+				}
+				
 				
 				this.transformFirstPerson(fireProgress, reloadProgress, chargeProgress, TransformType.FIRST_PERSON_LEFT_HAND == transform, sneaking&&isOffhand);
 			}
@@ -323,7 +329,10 @@ public class RenderGunBase extends RenderItemBase {
 			//Draw muzzle FX
 			if (muzzleFlashProgress>0){
 				if (TransformType.FIRST_PERSON_LEFT_HAND== transform || TransformType.FIRST_PERSON_RIGHT_HAND == transform ) {
-					this.drawMuzzleFx(muzzleFlashProgress, attackType, leftHand);
+					if (!isOffhand && gun.getZoomMult()<1.0f && gun.isZooming())
+						this.drawMuzzleFx(muzzleFlashProgress, attackType, leftHand, Xzoom, Yzoom);
+					else
+						this.drawMuzzleFx(muzzleFlashProgress, attackType, leftHand, 0f, 0f);
 				} else {
 					this.drawMuzzleFx3P(muzzleFlashProgress, attackType, leftHand);
 				}
@@ -417,7 +426,7 @@ public class RenderGunBase extends RenderItemBase {
 		GlStateManager.rotate(-90.0f, 0, 1.0f, 0);
 	}
 	
-	protected void drawMuzzleFx(float progress, byte attackType, boolean leftHand){
+	protected void drawMuzzleFx(float progress, byte attackType, boolean leftHand, float zoomX, float zoomY){
 		if (this.muzzleFX!=null){
 			float x= leftHand?this.muzzleFX_x_l:this.muzzleFX_x_r;
 			//float leftOffset = leftHand?0.05f:0f;
@@ -425,8 +434,8 @@ public class RenderGunBase extends RenderItemBase {
 			//Muzzle flash jitter
 			ClientProxy cp = ClientProxy.get();
 			float scale = this.muzzleFX_scale;
-			float offsetX = x;
-			float offsetY = this.muzzleFX_y;
+			float offsetX = x + zoomX;
+			float offsetY = this.muzzleFX_y + zoomY;
 			if (this.mf_jitterScale > 0.0f) scale += mf_jitterScale*cp.muzzleFlashJitterScale;
 			if (this.mf_jitterX > 0.0f) offsetX += mf_jitterX*cp.muzzleFlashJitterX;
 			if (this.mf_jitterY > 0.0f) offsetY += mf_jitterY*cp.muzzleFlashJitterY;
@@ -459,9 +468,10 @@ public class RenderGunBase extends RenderItemBase {
 		return (RenderGunBase) super.setBaseScale(baseScale);
 	}
 	
-	/*protected void transformADS() {
-		GlStateManager.translate(-0.56f, 0.15f, 0.31f);
-	}*/
+	protected void transformADS() {
+		GlStateManager.translate(Xzoom, Yzoom, Zzoom);
+		 //xyz
+	}
 	
 	public RenderGunBase setMuzzleFlashJitter(float jX, float jY, float jAngle, float jScale) {
 		this.mf_jitterX = jX;

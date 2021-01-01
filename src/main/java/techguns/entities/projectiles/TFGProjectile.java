@@ -1,10 +1,10 @@
 package techguns.entities.projectiles;
 
-//import elucent.albedo.event.GatherLightsEvent;
+import elucent.albedo.event.GatherLightsEvent;
 import elucent.albedo.lighting.ILightProvider;
 import elucent.albedo.lighting.Light;
 import io.netty.buffer.ByteBuf;
-//import net.minecraft.entity.Entity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -134,7 +134,7 @@ public class TFGProjectile extends GenericProjectile implements IEntityAdditiona
 				
 	}
 	
-	//@Optional.Method(modid="albedo")
+	@Optional.Method(modid="albedo")
 	@Override
 	public Light provideLight() {
 		return Light.builder()
@@ -144,8 +144,8 @@ public class TFGProjectile extends GenericProjectile implements IEntityAdditiona
 				.build();
 	}
 	
-	//@Optional.Method(modid="albedo")
-	//@Override
-	//public void gatherLights(GatherLightsEvent evt, Entity ent) {
-	//}
+	@Optional.Method(modid="albedo")
+	@Override
+	public void gatherLights(GatherLightsEvent evt, Entity ent) {
+	}
 }

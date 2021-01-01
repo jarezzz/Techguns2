@@ -85,17 +85,14 @@ dependencies {
 
 	//compile 'elucent:albedo:2.0-SNAPSHOT'
 	//deobfCompile 'albedo:albedo:0.1.3:deobf'
-	//compile 'albedo:albedo:1.12.2:1.1.0'
-	compile files('libs/albedo-0.1.3-deobf.jar')
+	compile 'albedo:albedo:1.12.2:1.1.0'
 	
-	//compile 'crafttweaker:CraftTweaker2:1.12:4.1.13'
-	compile files('libs/CraftTweaker2-1.12-4.1.13.jar')
+	compile 'crafttweaker:CraftTweaker2:1.12:4.1.13'
 	
 	//provided 'chisel:Chisel-MC1.12:0.0.14.18:api'
 	//provided 'chisel:Chisel:MC1.12:0.0.14.18'
 	
-	//compile 'the-lost-cities:lostcities:1.12:2.0.12'
-	compile files('libs/lostcities-1.12-2.0.12.jar')
+	compile 'the-lost-cities:lostcities:1.12:2.0.12'
 	
 	//compile 'com.latmod.mods:FTBLib:4.2.5:api'
 	deobfCompile "com.feed_the_beast.mods:FTBLib:5.4.0.64"

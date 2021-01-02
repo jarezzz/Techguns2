@@ -78,7 +78,8 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 	double startX;
 	double startY;
 	double startZ;
-
+	double squareForAngle;
+	
 	float radius=0.0f;
 	double gravity=0.0f;
 	
@@ -452,9 +453,91 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 
 		if (raytraceResultIn.typeOfHit == raytraceResultIn.typeOfHit.BLOCK) {
 
-			this.hitBlock(raytraceResultIn);
+/*n_xx#=CollisionNX(pl1,k)
+n_yy#=CollisionNY(pl1,k)
+n_zz#=CollisionNZ(pl1,k)
 
-			this.setDead();
+xx#=EntityX(pl1)-old_x#
+yy#=EntityY(pl1)-old_y#
+zz#=EntityZ(pl1)-old_z#
+
+dot#=xx*n_xx+yy*n_yy+zz*n_zz
+ex#=n_xx*dot
+ey#=n_yy*dot
+ez#=n_zz*dot
+
+xx=xx-ex*2
+yy=yy-ey*2
+zz=zz-ez*2*/
+			this.hitBlock(raytraceResultIn);
+			squareForAngle = this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ;
+			if(true) {
+			//	this.posX = hitPlace.x;
+			//	this.posY = hitPlace.y;
+			//	this.posZ = hitPlace.z;
+				this.setPosition(raytraceResultIn.hitVec.x, raytraceResultIn.hitVec.y, raytraceResultIn.hitVec.z);
+				switch (raytraceResultIn.sideHit) {
+					case DOWN: //y-1  
+						if((this.motionY * this.motionY / squareForAngle) < 0.6f) {
+							//this.motionX -= 0f; //2 * (this.motionX * 0f) * 0f;
+							this.motionY -= 2 * (this.motionY * 1f) * 1f;
+							//this.motionZ -= 0f; //2 * (this.motionZ * 0f) * 0f;
+						}	
+						else
+							this.setDead();
+						break;
+					case UP: //y+1
+						if((this.motionY * this.motionY / squareForAngle) < 0.6f) {
+							//this.motionX -= 0f; //2 * (this.motionX * 0f) * 0f;
+							this.motionY -= 2 * (this.motionY * (-1f)) * (-1f);
+							//this.motionZ -= 0f; //2 * (this.motionZ * 0f) * 0f;
+						}
+						else
+							this.setDead();
+						break;
+					case NORTH:	//z-1
+						if((this.motionZ * this.motionZ / squareForAngle) < 0.6f) {
+							//this.motionX -= 0f; //2 * (this.motionX * 0f) * 0f;
+							//this.motionY -= 0f; //2 * (this.motionY * 0f) * 0f;
+							this.motionZ -= 2 * (this.motionZ * (-1f)) * (-1f);
+						}
+						else
+							this.setDead();
+						break;
+					case SOUTH: //z+1
+						if((this.motionZ * this.motionZ / squareForAngle) < 0.6f) {
+							//this.motionX -= 0f;//2 * (this.motionX * 0f) * 0f;
+							//this.motionY -= 0f; //2 * (this.motionY * 0f) * 0f;
+							this.motionZ -= 2 * (this.motionZ * 1f) * 1f;
+						}
+						else
+							this.setDead();
+						break;
+					case WEST: //x+1
+						if((this.motionX * this.motionX / squareForAngle) < 0.6f) {
+							this.motionX -= 2 * (this.motionX * 1f) * 1f;
+							//this.motionY = 0f; //2 * (this.motionY * 0f) * 0f;
+							//this.motionZ = 0f; //2 * (this.motionZ * 0f) * 0f;
+						}
+						else
+							this.setDead();
+						break;
+					case EAST: //x-1
+						if((this.motionX * this.motionX / squareForAngle) < 0.6f) {
+							this.motionX -= 2 * (this.motionX * -(1f)) * (-1f);
+							//this.motionY -= 0f; //2 * (this.motionY * 0f) * 0f;
+							//this.motionZ -= 0f; //2 * (this.motionZ * 0f) * 0f;
+						}
+						else 
+							this.setDead();
+						break;
+					default:
+						this.setDead();
+				}
+				
+			}
+			else
+				this.setDead();
 
 		}
 

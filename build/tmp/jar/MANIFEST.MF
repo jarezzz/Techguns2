@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-FMLCorePluginContainsFMLMod: true
-FMLAT: techguns_at.cfg
-FMLCorePlugin: techguns.core.TechgunsFMLPlugin
-

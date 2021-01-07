@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "techguns:miningdrill"
+  },
+  "ingredients": [
+    {
+      "item": "techguns:miningdrill",
+      "type": "itemstackHasNBTInt",
+      "value": 0,
+      "key": "miningHead"
+    },
+    {
+      "item": "techguns:itemshared",
+      "data": 120
+    }
+  ],
+  "type": "techguns:miningtool_upgrade"
+}

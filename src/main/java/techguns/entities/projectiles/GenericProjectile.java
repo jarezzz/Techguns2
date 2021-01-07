@@ -71,7 +71,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 
 	float penetration = 0.0f;
 	static boolean ricochet = true;
-	float ricochetAngle = 0.08f; //square of angle in radians
+	float ricochetAngle = 0.03f; //square of angle in radians
 	boolean silenced = false;
 	protected boolean blockdamage = false;
 

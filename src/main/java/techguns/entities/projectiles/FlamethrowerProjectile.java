@@ -25,6 +25,10 @@ import techguns.util.MathUtil;
 @Optional.Interface(iface="elucent.albedo.lighting.ILightProvider", modid="albedo")
 public class FlamethrowerProjectile extends GenericProjectile implements ILightProvider {
 
+	static {
+		ricochet = false;
+	}
+
 	boolean piercing = false;
 	
 	float chanceToIgnite = 0.5f;

@@ -31,9 +31,7 @@ public class RenderGunBase extends RenderItemBase {
 	protected float muzzleFX_z=0f;
 	protected float muzzleFX_scale=1.0f;
 	
-	protected float Xzoom = -0.4f;//-0.35f, 0.1f, 0.05f); //xyz
-	protected float Yzoom = 0.08f;
-	protected float Zzoom = 0.02f;
+	
 
 	protected float muzzleFX_3p_y=0f;
 	protected float muzzleFX_3p_z=0f;
@@ -287,7 +285,7 @@ public class RenderGunBase extends RenderItemBase {
 			} else {
 			
 				if (!isOffhand && gun.getZoomMult()<1.0f && gun.isZooming()) {
-					this.transformADS(); //-0.35f, 0.1f, 0.05f)
+					this.transformADS(gun.getZoomX(), gun.getZoomY(), gun.getZoomZ()); //-0.35f, 0.1f, 0.05f)
 				}
 				
 				
@@ -330,7 +328,7 @@ public class RenderGunBase extends RenderItemBase {
 			if (muzzleFlashProgress>0){
 				if (TransformType.FIRST_PERSON_LEFT_HAND== transform || TransformType.FIRST_PERSON_RIGHT_HAND == transform ) {
 					if (!isOffhand && gun.getZoomMult()<1.0f && gun.isZooming())
-						this.drawMuzzleFx(muzzleFlashProgress, attackType, leftHand, Xzoom, Yzoom);
+						this.drawMuzzleFx(muzzleFlashProgress, attackType, leftHand, gun.getZoomX(), gun.getZoomY());
 					else
 						this.drawMuzzleFx(muzzleFlashProgress, attackType, leftHand, 0f, 0f);
 				} else {
@@ -468,7 +466,7 @@ public class RenderGunBase extends RenderItemBase {
 		return (RenderGunBase) super.setBaseScale(baseScale);
 	}
 	
-	protected void transformADS() {
+	protected void transformADS(float Xzoom, float Yzoom, float Zzoom) {
 		GlStateManager.translate(Xzoom, Yzoom, Zzoom);
 		 //xyz
 	}
@@ -495,5 +493,7 @@ public class RenderGunBase extends RenderItemBase {
 		this.ambientParticleFX = ambientParticleFX;
 		return this;
 	}
+	
+
 	
 }

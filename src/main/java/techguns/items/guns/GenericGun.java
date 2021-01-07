@@ -94,6 +94,9 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 	float zoomMult = 1.0f;
 	boolean canZoom = false;
 	boolean toggleZoom = false;
+	float Xzoom = -0.4f;//-0.35f, 0.1f, 0.05f); //xyz
+	float Yzoom = 0.08f;
+	float Zzoom = 0.02f;
 	boolean fireCenteredZoomed=false;
 	int ticksToLive = 40;
 	float speed = 2.0f;
@@ -244,6 +247,7 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 	public boolean hasBowAnim() {
 		return this.hasAimedBowAnim;
 	}
+	
 	
 	public GenericGun(boolean addToGunList,String name, ProjectileSelector projectile_selector, boolean semiAuto, int minFiretime, int clipsize, int reloadtime, float damage, SoundEvent firesound, SoundEvent reloadsound, int TTL, float accuracy){
 		this(name);
@@ -472,13 +476,12 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 	protected void spawnProjectile(final World world, final EntityLivingBase player, final ItemStack itemstack, float spread, float offset, float damagebonus, EnumBulletFirePos firePos, Entity target) {
 		/*GenericProjectile proj = new GenericProjectile(world, player, damage * damagebonus, speed, this.getScaledTTL(), spread, this.damageDropStart, this.damageDropEnd,
 				this.damageMin * damagebonus, this.penetration, getDoBlockDamage(player), leftGun);*/
-		
+				
 		IProjectileFactory<GenericProjectile> projectile = this.projectile_selector.getFactoryForType(this.getCurrentAmmoVariantKey(itemstack));
 		
 		GenericProjectile proj = projectile.createProjectile(this, world, player, damage * damagebonus, speed, this.getScaledTTL(), spread, this.damageDropStart,
 				this.damageDropEnd, this.damageMin * damagebonus, this.penetration, getDoBlockDamage(player), firePos, radius, gravity);
 
-		
 		float f=1.0f;
 		if(this.muzzelight) {
 			Techguns.proxy.createLightPulse(proj.posX+player.getLookVec().x*f, proj.posY+player.getLookVec().y*f, proj.posZ+player.getLookVec().z*f, this.light_lifetime, this.light_radius_start, this.light_radius_end, this.light_r, this.light_g, this.light_b);
@@ -579,6 +582,10 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 			        		if (fireCenteredZoomed) {
 			        			firePos=EnumBulletFirePos.CENTER;
 			        		}
+							else {
+								firePos=EnumBulletFirePos.ZOOMED;
+							}
+								
 			        	}
 			        	this.shootGun(world, player,stack, accuracybonus,1.0f,ATTACK_TYPE, hand,firePos, target);
 			        	        	
@@ -1601,6 +1608,18 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 
 	public int getClipsize() {
 		return clipsize;
+	}
+	
+	public float getZoomX() {
+		return this.Xzoom;
+	}
+	
+	public float getZoomY() {
+		return this.Yzoom;
+	}
+	
+	public float getZoomZ() {
+		return this.Zzoom;
 	}
 	
 	@Override

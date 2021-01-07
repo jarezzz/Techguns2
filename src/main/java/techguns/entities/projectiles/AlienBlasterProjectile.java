@@ -27,6 +27,10 @@ public class AlienBlasterProjectile extends GenericProjectile implements ILightP
 
 	public static final int ENTITY_IGNITE_TIME = 3;
 	
+	static {
+		ricochet = false;
+	}
+	
 	public AlienBlasterProjectile(World worldIn) {
 		super(worldIn);
 		if(worldIn.isRemote) {

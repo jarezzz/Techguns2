@@ -28,6 +28,10 @@ import techguns.util.MathUtil;
 @Optional.Interface(iface="elucent.albedo.lighting.ILightProvider", modid="albedo")
 public class GaussProjectile extends AdvancedBulletProjectile implements ILightProvider {
 
+	static {
+		ricochet = false;
+	}
+
 	public GaussProjectile(World par2World, EntityLivingBase p, float damage, float speed, int TTL, float spread,
 			float dmgDropStart, float dmgDropEnd, float dmgMin, float penetration, boolean blockdamage, EnumBulletFirePos leftGun) {
 		super(par2World, p, damage, speed, TTL, spread, dmgDropStart, dmgDropEnd, dmgMin, penetration, blockdamage, leftGun);

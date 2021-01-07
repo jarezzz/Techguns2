@@ -70,7 +70,8 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 	protected EntityLivingBase shooter;
 
 	float penetration = 0.0f;
-
+	static boolean ricochet = true;
+	float ricochetAngle = 0.08f; //square of angle in radians
 	boolean silenced = false;
 	protected boolean blockdamage = false;
 
@@ -128,6 +129,9 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 			boolean blockdamage, EnumBulletFirePos firePos) {
 
 		float offsetSide=0.16F;
+		float Xzoom = offsetSide*0.4f;//-0.35f, 0.1f, 0.05f); //xyz
+		float Yzoom = 0.08f;
+		float Zzoom = offsetSide*0.02f;
 		float offsetHeight=0f;
 		if(this.shooter!=null && shooter instanceof INPCTechgunsShooter) {
 			INPCTechgunsShooter tgshooter = (INPCTechgunsShooter) this.shooter;
@@ -142,11 +146,17 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 			this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * offsetSide);
 			//this.posY -= 0.10000000149011612D;
 			this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * offsetSide);
-		} else if(firePos==EnumBulletFirePos.LEFT) {
+		} else if (firePos==EnumBulletFirePos.LEFT) {
 			this.posX += (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * offsetSide);
 			//this.posY -= 0.10000000149011612D;
 			this.posZ += (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * offsetSide);
-		} 
+		} else if (firePos==EnumBulletFirePos.ZOOMED) {
+			this.posX -= (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * Xzoom);
+			//this.posY -= 0.10000000149011612D;
+			this.posZ -= (double) (MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * Zzoom);
+			//offsetHeight -= Yzoom;
+		}
+		
 		this.posY += (-0.10000000149011612D+offsetHeight);
 		
 		this.setPosition(this.posX, this.posY, this.posZ);
@@ -456,14 +466,14 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 
 			this.hitBlock(raytraceResultIn);
 			squareForAngle = this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ;
-			if(true) {
+			if(ricochet) {
 			//	this.posX = hitPlace.x;
 			//	this.posY = hitPlace.y;
 			//	this.posZ = hitPlace.z;
 				this.setPosition(raytraceResultIn.hitVec.x, raytraceResultIn.hitVec.y, raytraceResultIn.hitVec.z);
 				switch (raytraceResultIn.sideHit) {
 					case DOWN: //y-1  
-						if((this.motionY * this.motionY / squareForAngle) < 0.1f) {
+						if((this.motionY * this.motionY / squareForAngle) < ricochetAngle) {
 							//this.motionX -= 0f; //2 * (this.motionX * 0f) * 0f;
 							this.motionY -= 2 * (this.motionY * 1f) * 1f;
 							//this.motionZ -= 0f; //2 * (this.motionZ * 0f) * 0f;
@@ -472,7 +482,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 							this.setDead();
 						break;
 					case UP: //y+1
-						if((this.motionY * this.motionY / squareForAngle) < 0.1f) {
+						if((this.motionY * this.motionY / squareForAngle) < ricochetAngle) {
 							//this.motionX -= 0f; //2 * (this.motionX * 0f) * 0f;
 							this.motionY -= 2 * (this.motionY * (-1f)) * (-1f);
 							//this.motionZ -= 0f; //2 * (this.motionZ * 0f) * 0f;
@@ -481,7 +491,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 							this.setDead();
 						break;
 					case NORTH:	//z-1
-						if((this.motionZ * this.motionZ / squareForAngle) < 0.1f) {
+						if((this.motionZ * this.motionZ / squareForAngle) < ricochetAngle) {
 							//this.motionX -= 0f; //2 * (this.motionX * 0f) * 0f;
 							//this.motionY -= 0f; //2 * (this.motionY * 0f) * 0f;
 							this.motionZ -= 2 * (this.motionZ * (-1f)) * (-1f);
@@ -490,7 +500,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 							this.setDead();
 						break;
 					case SOUTH: //z+1
-						if((this.motionZ * this.motionZ / squareForAngle) < 0.1f) {
+						if((this.motionZ * this.motionZ / squareForAngle) < ricochetAngle) {
 							//this.motionX -= 0f;//2 * (this.motionX * 0f) * 0f;
 							//this.motionY -= 0f; //2 * (this.motionY * 0f) * 0f;
 							this.motionZ -= 2 * (this.motionZ * 1f) * 1f;
@@ -499,7 +509,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 							this.setDead();
 						break;
 					case WEST: //x+1
-						if((this.motionX * this.motionX / squareForAngle) < 0.1f) {
+						if((this.motionX * this.motionX / squareForAngle) < ricochetAngle) {
 							this.motionX -= 2 * (this.motionX * 1f) * 1f;
 							//this.motionY = 0f; //2 * (this.motionY * 0f) * 0f;
 							//this.motionZ = 0f; //2 * (this.motionZ * 0f) * 0f;
@@ -508,7 +518,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 							this.setDead();
 						break;
 					case EAST: //x-1
-						if((this.motionX * this.motionX / squareForAngle) < 0.1f) {
+						if((this.motionX * this.motionX / squareForAngle) < ricochetAngle) {
 							this.motionX -= 2 * (this.motionX * -(1f)) * (-1f);
 							//this.motionY -= 0f; //2 * (this.motionY * 0f) * 0f;
 							//this.motionZ -= 0f; //2 * (this.motionZ * 0f) * 0f;

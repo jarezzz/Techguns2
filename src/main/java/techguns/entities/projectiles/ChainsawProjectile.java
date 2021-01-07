@@ -17,6 +17,10 @@ import techguns.packets.PacketSpawnParticle;
 
 public class ChainsawProjectile extends GenericProjectile {
 
+	static {
+		ricochet = false;
+	}
+
 	public ChainsawProjectile(World worldIn, double posX, double posY, double posZ, float yaw, float pitch,
 			float damage, float speed, int TTL, float spread, float dmgDropStart, float dmgDropEnd, float dmgMin,
 			float penetration, boolean blockdamage, EnumBulletFirePos firePos) {

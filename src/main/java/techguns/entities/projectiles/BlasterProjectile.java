@@ -15,6 +15,10 @@ import techguns.packets.PacketSpawnParticle;
 
 public class BlasterProjectile extends GenericProjectile {
 
+	static {
+		ricochet = false;
+	}
+
 	public BlasterProjectile(World worldIn) {
 		super(worldIn);
 	}

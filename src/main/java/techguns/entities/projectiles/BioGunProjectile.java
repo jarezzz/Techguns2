@@ -36,6 +36,9 @@ public class BioGunProjectile extends GenericProjectile implements IEntityAdditi
 
 	public int level;
 
+	static {
+		ricochet = false;
+	}
 
 	public BioGunProjectile(World worldIn, double posX, double posY, double posZ, float yaw, float pitch, float damage, float speed, int TTL, float spread, float dmgDropStart,
 			float dmgDropEnd, float dmgMin, float penetration, boolean blockdamage, EnumBulletFirePos leftGun, double gravity, int level) {

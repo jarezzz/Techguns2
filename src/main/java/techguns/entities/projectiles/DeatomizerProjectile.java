@@ -17,6 +17,10 @@ import techguns.packets.PacketSpawnParticle;
 
 public class DeatomizerProjectile extends GenericProjectile {
 
+	static {
+		ricochet = false;
+	}
+
 	public DeatomizerProjectile(World worldIn) {
 		super(worldIn);
 		if(worldIn.isRemote) {

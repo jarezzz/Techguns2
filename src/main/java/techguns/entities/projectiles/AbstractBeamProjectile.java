@@ -14,9 +14,14 @@ public abstract class AbstractBeamProjectile extends GenericProjectile {
 	public float laserPitch = 0.0f;
 	public float laserYaw = 0.0f;
 	public short maxTicks = 0;
+	static {
+		ricochet = false;
+	}
+	
 	
 	public AbstractBeamProjectile(World worldIn) {
 		super(worldIn);
+		this.ricochet = false;
 	}
 
 	public AbstractBeamProjectile(World par2World, EntityLivingBase p, float damage, float speed, int TTL, float spread,

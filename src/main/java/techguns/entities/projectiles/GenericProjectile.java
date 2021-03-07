@@ -129,7 +129,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 			boolean blockdamage, EnumBulletFirePos firePos) {
 
 		float offsetSide=0.16F;
-		float Xzoom = offsetSide*0.4f;//-0.35f, 0.1f, 0.05f); //xyz
+		float Xzoom = offsetSide*0.2f;//-0.35f, 0.1f, 0.05f); //xyz
 		float Yzoom = 0.08f;
 		float Zzoom = offsetSide*0.02f;
 		float offsetHeight=0f;

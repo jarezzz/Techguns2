@@ -582,7 +582,7 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 			        		if (fireCenteredZoomed) {
 			        			firePos=EnumBulletFirePos.CENTER;
 			        		}
-							else {
+							else if (player.getPrimaryHand()==GunHandType.TWO_HANDED && hand == EnumHand.MAIN_HAND){
 								firePos=EnumBulletFirePos.ZOOMED;
 							}
 								

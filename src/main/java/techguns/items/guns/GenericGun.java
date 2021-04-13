@@ -91,7 +91,7 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 	SoundEvent rechamberSound = null;
 	int ammoCount; // ammo per reload
 	// float recoil = 25.0f;
-	float zoomMult = 1.0f;
+	float zoomMult = 0.0f;
 	boolean canZoom = false;
 	boolean toggleZoom = false;
 	float Xzoom = -0.4f;//-0.35f, 0.1f, 0.05f); //xyz
@@ -582,7 +582,7 @@ public class GenericGun extends GenericItem implements IGenericGun, IItemTGRende
 			        		if (fireCenteredZoomed) {
 			        			firePos=EnumBulletFirePos.CENTER;
 			        		}
-							else if (player.getPrimaryHand()==GunHandType.TWO_HANDED && hand == EnumHand.MAIN_HAND){
+							else if (player.getPrimaryHand()==EnumHandSide.RIGHT && hand == EnumHand.MAIN_HAND){
 								firePos=EnumBulletFirePos.ZOOMED;
 							}
 								

@@ -72,6 +72,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 	float penetration = 0.0f;
 	static boolean ricochet = true;
 	float ricochetAngle = 0.03f; //square of angle in radians
+	float ricochetChance = 0.2f;
 	boolean silenced = false;
 	protected boolean blockdamage = false;
 
@@ -466,7 +467,7 @@ public class GenericProjectile extends Entity implements IProjectile, IEntityAdd
 
 			this.hitBlock(raytraceResultIn);
 			squareForAngle = this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ;
-			if(ricochet) {
+			if(ricochet && Math.random() < ricochetChance) {
 			//	this.posX = hitPlace.x;
 			//	this.posY = hitPlace.y;
 			//	this.posZ = hitPlace.z;
